@@ -4,8 +4,8 @@ import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerR
   selector: '[appCustomNgIf]',
   standalone: true,
 })
-export class CustomNgIfDirective implements OnChanges {
-  constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef) {}
+export class CustomNgIf implements OnChanges {
+  constructor(private templateRef: TemplateRef<unknown>, private viewContainer: ViewContainerRef) {}
 
   @Input() appCustomNgIf: boolean;
 
