@@ -17,7 +17,6 @@ export class AccessingElementsComponent implements AfterViewInit{
   buttonRef?: ElementRef<HTMLButtonElement>;
 
   increment() {
-    console.log(this.child);
     this.child?.increment();
   }
 

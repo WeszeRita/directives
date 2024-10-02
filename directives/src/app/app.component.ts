@@ -19,6 +19,5 @@ import { LionComponent } from './pages/templateRef/lion/lion.component';
   standalone: true,
   imports: [RouterOutlet, UsageCustomNgIfComponent, UsageCustomNgForComponent, UsageHighlightDirectiveComponent, UsageCustomStructuralDirectiveWithContextComponent, AccessingElementsComponent, AnimalsComponent, LionComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {}

@@ -2,7 +2,7 @@ import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[highlightWithRenderer2]',
-  standalone: true
+  standalone: true,
 })
 export class HighlightWithRenderer2Directive {
 

@@ -12,7 +12,4 @@ export class ChildComponent {
   increment() {
     this.count++;
   }
-  decrement() {
-    this.count--;
-  }
 }
