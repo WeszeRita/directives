@@ -1,0 +1,10 @@
+<p>Decoded Frontend</p>
+<div *hideAfter="3000 as time; then placeholder; let counter = counter; let myDefault">
+  <h2>Temporary content</h2>
+  <p>This layout should disappear in {{ time }} seconds. It will disappear in: {{ counter }} seconds. Default value from $implicit: {{ myDefault }}</p>
+</div>
+
+<ng-template #placeholder let-hiddenAfter="hideAfter" let-myDefault>
+  <h2>Placeholder</h2>
+  <p>Here was some content. The Temporary content was visible for {{ hiddenAfter }} seconds. Default value from $implicit: {{ myDefault }}</p>
+</ng-template>
