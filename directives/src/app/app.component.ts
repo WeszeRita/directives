@@ -7,11 +7,15 @@ import {
 import {
   UsageHighlightDirectiveComponent
 } from './pages/custom-attribute-directives/usage-highlight-directive/usage-highlight-directive.component';
+import {
+  UsageCustomStructuralDirectiveWithContextComponent
+} from './pages/custom-structural-directives/usage-custom-structural-directive-with-context/usage-custom-structural-directive-with-context.component';
+import { AccessingElementsComponent } from './pages/accessing-elements/accessing-elements/accessing-elements.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UsageCustomNgIfComponent, UsageCustomNgForComponent, UsageHighlightDirectiveComponent],
+  imports: [RouterOutlet, UsageCustomNgIfComponent, UsageCustomNgForComponent, UsageHighlightDirectiveComponent, UsageCustomStructuralDirectiveWithContextComponent, AccessingElementsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
