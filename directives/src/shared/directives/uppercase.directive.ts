@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener, OnInit, Renderer2 } from '@angular
   standalone: true,
 })
 export class UppercaseDirective implements OnInit {
-  static elements: HTMLElement[] = [];      // static field will be accessed using dot notation
+  static elements: HTMLElement[] = [];      // static field will be accessed using dot notation (e.g. UppercaseDirective.elements)
 
   @HostListener('click') onClick() {
     this.renderer.setStyle(this.elementRef.nativeElement, 'textTransform', 'uppercase');

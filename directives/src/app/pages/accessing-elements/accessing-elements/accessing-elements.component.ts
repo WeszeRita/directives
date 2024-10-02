@@ -4,21 +4,18 @@ import { ChildComponent } from '../child/child.component';
 @Component({
   selector: 'app-accessing-elements',
   standalone: true,
-  imports: [
-    ChildComponent,
-  ],
+  imports: [ChildComponent],
   templateUrl: './accessing-elements.component.html',
 })
 export class AccessingElementsComponent implements AfterViewInit{
   @ViewChild(ChildComponent, { static: true })
-  child?: ChildComponent;
+  child: ChildComponent;
 
   @ViewChild('button', { static: true })
-  buttonRef?: ElementRef<HTMLButtonElement>;
+  buttonRef: ElementRef<HTMLButtonElement>;
 
   increment() {
-    console.log(this.child);
-    this.child?.increment();
+    this.child.increment();
   }
 
   ngAfterViewInit() {

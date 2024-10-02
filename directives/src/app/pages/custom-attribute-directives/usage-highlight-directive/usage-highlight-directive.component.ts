@@ -13,5 +13,4 @@ import { UppercaseDirective } from '../../../../shared/directives/uppercase.dire
   ],
   templateUrl: './usage-highlight-directive.component.html',
 })
-export class UsageHighlightDirectiveComponent {
-}
+export class UsageHighlightDirectiveComponent {}

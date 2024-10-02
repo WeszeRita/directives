@@ -6,7 +6,7 @@ import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerR
 })
 export class CustomNgForObject implements OnChanges {
   @Input()
-  ngForObject: { [key: string]: any };
+  ngForObject: { [key: string]: string };
 
   constructor(private templateRef: TemplateRef<unknown>, private viewContainerRef: ViewContainerRef) {}
 

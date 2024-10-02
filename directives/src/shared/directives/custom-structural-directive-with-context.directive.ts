@@ -19,12 +19,11 @@ export class CustomStructuralDirectiveWithContextDirective implements OnInit {
     this.context.hideAfter =this.context.counter = this._delay / 1000;
   }
 
-  private _delay = 0;
-
   @Input('hideAfterThen')
   placeholder: TemplateRef<any> = null;
 
   private context = new HideAfterContext();
+  private _delay = 0;
 
   constructor(private viewContainerRef: ViewContainerRef, private template: TemplateRef<HideAfterContext>) {}
 
@@ -40,6 +39,7 @@ export class CustomStructuralDirectiveWithContextDirective implements OnInit {
       if (this.placeholder) {
         this.viewContainerRef.createEmbeddedView(this.placeholder, this.context);
       }
+
       clearInterval(intervalId);
     }, this._delay);
   }

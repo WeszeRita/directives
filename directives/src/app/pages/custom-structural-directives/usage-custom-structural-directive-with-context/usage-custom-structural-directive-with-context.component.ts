@@ -6,12 +6,7 @@ import {
 @Component({
   selector: 'app-usage-custom-structural-directive-with-context',
   standalone: true,
-  imports: [
-    CustomStructuralDirectiveWithContextDirective,
-  ],
+  imports: [CustomStructuralDirectiveWithContextDirective],
   templateUrl: './usage-custom-structural-directive-with-context.component.html',
-  styleUrl: './usage-custom-structural-directive-with-context.component.css'
 })
-export class UsageCustomStructuralDirectiveWithContextComponent {
-
-}
+export class UsageCustomStructuralDirectiveWithContextComponent {}
