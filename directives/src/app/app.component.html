@@ -9,3 +9,9 @@
 <app-usage-custom-structural-directive-with-context></app-usage-custom-structural-directive-with-context>
 <hr>
 <app-accessing-elements></app-accessing-elements>
+<hr>
+<app-animals [template]="lion"></app-animals>
+
+<ng-template #lion>
+  <app-lion></app-lion>
+</ng-template>

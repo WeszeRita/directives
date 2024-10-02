@@ -11,11 +11,13 @@ import {
   UsageCustomStructuralDirectiveWithContextComponent
 } from './pages/custom-structural-directives/usage-custom-structural-directive-with-context/usage-custom-structural-directive-with-context.component';
 import { AccessingElementsComponent } from './pages/accessing-elements/accessing-elements/accessing-elements.component';
+import { AnimalsComponent } from './pages/templateRef/animals/animals.component';
+import { LionComponent } from './pages/templateRef/lion/lion.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UsageCustomNgIfComponent, UsageCustomNgForComponent, UsageHighlightDirectiveComponent, UsageCustomStructuralDirectiveWithContextComponent, AccessingElementsComponent],
+  imports: [RouterOutlet, UsageCustomNgIfComponent, UsageCustomNgForComponent, UsageHighlightDirectiveComponent, UsageCustomStructuralDirectiveWithContextComponent, AccessingElementsComponent, AnimalsComponent, LionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
