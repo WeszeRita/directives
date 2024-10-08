@@ -80,6 +80,7 @@ export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCh
 
       changes.forEachIdentityChange((record: IterableChangeRecord<T>) => {
         const view = viewRef.get(record.currentIndex as number) as EmbeddedViewRef<any>;
+
         view.context.$implicit = record.item;
       });
     }
