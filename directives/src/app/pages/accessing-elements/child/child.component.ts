@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class ChildComponent {
   count = 0;
 
-  increment() {
+  increment(): void {
     this.count++;
   }
 }

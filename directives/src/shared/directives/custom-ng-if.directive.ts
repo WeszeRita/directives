@@ -5,11 +5,12 @@ import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerR
   standalone: true,
 })
 export class CustomNgIf implements OnChanges {
-  constructor(private templateRef: TemplateRef<unknown>, private viewContainer: ViewContainerRef) {}
+  constructor(readonly templateRef: TemplateRef<unknown>, readonly viewContainer: ViewContainerRef) {}
 
-  @Input() customNgIf: boolean;
+  @Input({ required: true })
+  customNgIf: boolean;
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['customNgIf'].currentValue) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {

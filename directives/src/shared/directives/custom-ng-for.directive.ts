@@ -6,12 +6,12 @@ import { Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerR
 })
 export class CustomNgForObject implements OnChanges {
   @Input()
-  ngForObject: { [key: string]: string };
+  ngForObject: Record<string, string>;
 
   constructor(private templateRef: TemplateRef<unknown>, private viewContainerRef: ViewContainerRef) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['ngForObject'] && changes['ngForObject'].currentValue) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['ngForObject']?.currentValue) {
       this.viewContainerRef.clear();
 
       const propertyNames = Object.keys(changes['ngForObject'].currentValue);

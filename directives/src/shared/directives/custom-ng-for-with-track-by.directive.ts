@@ -5,7 +5,7 @@ import {
   IterableChangeRecord,
   IterableDiffer,
   IterableDiffers,
-  NgIterable,
+  NgIterable, OnChanges, SimpleChanges,
   TemplateRef,
   TrackByFunction,
   ViewContainerRef, ViewRef,
@@ -15,25 +15,26 @@ import {
   selector: '[myNgFor][myNgForOf]',
   standalone: true,
 })
-export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCheck {
+export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCheck, OnChanges {
   // https://kurtwanger40.medium.com/build-your-own-ngfor-in-angular-2e06d2101f50
   private _myNgFor: NgIterable<T> = null;
   private differ: IterableDiffer<T> = null;
   private _trackByFn: TrackByFunction<T>;
 
   @Input()
-  set myNgForTrackBy(fn: TrackByFunction<T>) {
-    this._trackByFn = fn;
-  }
+  myNgForTrackBy: TrackByFunction<T>
 
   @Input()
-  set myNgForOf(myNgForOf: NgIterable<T>) {
-    this._myNgFor = myNgForOf;
-  }
+  myNgForOf: NgIterable<T>
 
   constructor(private viewRef: ViewContainerRef, private templateRef: TemplateRef<any>, private differs: IterableDiffers) {}
 
-  ngDoCheck() {
+  ngOnChanges(changes:SimpleChanges): void {
+    this._trackByFn = this.myNgForTrackBy;
+    this._myNgFor = this.myNgForOf;
+  }
+
+  ngDoCheck(): void {
     const viewRef = this.viewRef;
     const value = this._myNgFor;
     if (!value) return;
@@ -61,9 +62,11 @@ export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCh
         const viewRefItem = viewRef.get(record.previousIndex as number);
         viewRef.move(viewRefItem as ViewRef, record.currentIndex as number);
       });
+
       changes.forEachRemovedItem((record: IterableChangeRecord<T>) => {
         viewRef.remove(record.previousIndex as number);
       });
+
       for (let index = 0; index < this.viewRef.length; index++) {
         const item = this.viewRef.get(index) as EmbeddedViewRef<any>;
         const context = item.context;
@@ -74,6 +77,7 @@ export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCh
         context.last = index === this.viewRef.length - 1;
         context.count = this.viewRef.length;
       }
+
       changes.forEachIdentityChange((record: IterableChangeRecord<T>) => {
         const view = viewRef.get(record.currentIndex as number) as EmbeddedViewRef<any>;
         view.context.$implicit = record.item;
