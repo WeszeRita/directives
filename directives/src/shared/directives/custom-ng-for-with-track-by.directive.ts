@@ -5,7 +5,7 @@ import {
   IterableChangeRecord,
   IterableDiffer,
   IterableDiffers,
-  NgIterable,
+  NgIterable, OnChanges, SimpleChanges,
   TemplateRef,
   TrackByFunction,
   ViewContainerRef, ViewRef,
@@ -15,25 +15,26 @@ import {
   selector: '[myNgFor][myNgForOf]',
   standalone: true,
 })
-export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCheck {
+export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCheck, OnChanges {
   // https://kurtwanger40.medium.com/build-your-own-ngfor-in-angular-2e06d2101f50
   private _myNgFor: NgIterable<T> = null;
   private differ: IterableDiffer<T> = null;
   private _trackByFn: TrackByFunction<T>;
 
   @Input()
-  set myNgForTrackBy(fn: TrackByFunction<T>) {
-    this._trackByFn = fn;
-  }
+  myNgForTrackBy: TrackByFunction<T>
 
   @Input()
-  set myNgForOf(myNgForOf: NgIterable<T>) {
-    this._myNgFor = myNgForOf;
-  }
+  myNgForOf: NgIterable<T>
 
   constructor(private viewRef: ViewContainerRef, private templateRef: TemplateRef<any>, private differs: IterableDiffers) {}
 
-  ngDoCheck() {
+  ngOnChanges(changes:SimpleChanges): void {
+    this._trackByFn = this.myNgForTrackBy;
+    this._myNgFor = this.myNgForOf;
+  }
+
+  ngDoCheck(): void {
     const viewRef = this.viewRef;
     const value = this._myNgFor;
     if (!value) return;
@@ -76,6 +77,7 @@ export class MyNgFor<T, U extends NgIterable<T> = NgIterable<T>> implements DoCh
       }
       changes.forEachIdentityChange((record: IterableChangeRecord<T>) => {
         const view = viewRef.get(record.currentIndex as number) as EmbeddedViewRef<any>;
+
         view.context.$implicit = record.item;
       });
     }

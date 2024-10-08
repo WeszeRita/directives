@@ -10,7 +10,7 @@ import { CustomNgIf } from '../../../../shared/directives/custom-ng-if.directive
 export class UsageCustomNgIfComponent {
   condition = true;
 
-  setCondition() {
+  setCondition(): void {
     this.condition = !this.condition;
   }
 }

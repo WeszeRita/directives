@@ -7,7 +7,7 @@ import { ChildComponent } from '../child/child.component';
   imports: [ChildComponent],
   templateUrl: './accessing-elements.component.html',
 })
-export class AccessingElementsComponent implements AfterViewInit{
+export class AccessingElementsComponent implements AfterViewInit {
   @ViewChild(ChildComponent, { static: true })
   child: ChildComponent;
 
@@ -18,7 +18,7 @@ export class AccessingElementsComponent implements AfterViewInit{
     this.child.increment();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.buttonRef?.nativeElement) {
       this.buttonRef.nativeElement.innerText = 'asdf'
     }
