@@ -1,0 +1,11 @@
+<span>ngFor with lovely plants but WITHOUT trackBy:</span>
+<ul>
+  <ng-template  let-propertyName let-index="index" [ngForObject]="greenyPlantsWithNames">
+    <li>{{ propertyName }}: {{ greenyPlantsWithNames[propertyName] }} ({{ index }})</li>
+  </ng-template>
+</ul>
+
+<span>ngFor with lovely plants and WITH trackBy:</span>
+<ul>
+  <li *myNgFor="let plant of greenyPlants; index as index">{{ plant }} ({{ index }})</li>
+</ul>
